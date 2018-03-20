@@ -1,0 +1,9 @@
+$timestamp = "2012-10-19 18:19:56";
+$splitTimeStamp = explode(" ",$timestamp);
+$date = $splitTimeStamp[0];
+$time = $splitTimeStamp[1];
+
+Another way of doing this would be this would be to use strtotime() combined with date()-
+
+$date = date('Y-m-d',strtotime($timestamp));
+$time = date('H:i:s',strtotime($timestamp));
