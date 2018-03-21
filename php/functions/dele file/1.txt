@@ -1,0 +1,40 @@
+function delete_file($install_file)
+{
+    if (@file_exists($install_file) == true) {
+        /**
+         * Wenn die Datei vorhahen ist, löschen wir
+        diese mit der Php Funktion unlink(). Hier
+        stellen wir wieder ein @ Zeichen vor die
+        PHP Funktion, damit keine Fehlermeldung
+        ausgegeben wird.
+         */
+        if (@unlink($install_file) == true) {
+            /**
+             * Wenn die PHP-Funktion unlink() ein true
+            Zurück gibt, wurde die Datei
+            erfolgreich gelöscht. Dafür geben wir
+            eine Meldung aus mit den echo Befehl.
+             */
+            echo 'Die Datei: ' . $install_file . ' wurde
+                erfolgreich gelöscht.';
+        } else {
+            /**
+             * Sollte ein Fehler beim Löschen der Datei
+            auftreten, gibt die PHP-Funktion
+            unlink() false zurück.
+             */
+            echo 'Die Datei: ' . $install_file . ' konnte
+                nicht gelöscht werden!';
+        }
+    } else {
+        /**
+         * Wenn die Datei nicht vorhanden ist, geben
+        wir eine Fehlermeldung aus.
+         */
+        echo 'Die Datei: ' . $install_file . ' ist nicht
+            vorhanden!';
+    }
+}
+
+
+delete_file($install_file);

@@ -1,0 +1,37 @@
+function rrmdir($src)
+{
+    $dir = opendir($src);
+    while (false !== ($file = readdir($dir))) {
+        if (($file != '.') && ($file != '..')) {
+            $full = $src . '/' . $file;
+            if (is_dir($full)) {
+                rrmdir($full);
+            } else {
+                unlink($full);
+            }
+        }
+    }
+    closedir($dir);
+    if (@rmdir($src) == true) {
+        /**
+         * Wenn die PHP-Funktion unlink() ein true
+        Zurück gibt, wurde die Datei
+        erfolgreich gelöscht. Dafür geben wir
+        eine Meldung aus mit den echo Befehl.
+         */
+        echo 'Der Ordner: ' . $src . ' wurde
+                erfolgreich gelöscht.<br />';
+    } else {
+        /**
+         * Sollte ein Fehler beim Löschen der Datei
+        auftreten, gibt die PHP-Funktion
+        unlink() false zurück.
+         */
+        echo 'Der Ordner: ' . $src . ' konnte
+                nicht gelöscht werden!<br />';
+    }
+}
+
+
+
+rrmdir($install_folder);
