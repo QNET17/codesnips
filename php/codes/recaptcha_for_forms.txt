@@ -1,0 +1,28 @@
+//PHP POST
+            $captcha        = (isset($HTTP_POST_VARS['g-recaptcha-response'])) ? un_htmlspecialchars(trim($HTTP_POST_VARS['g-recaptcha-response'])) : "";
+
+////PHP
+            $url  = 'https://www.google.com/recaptcha/api/siteverify';
+            $data = array(
+                'secret'   => 'XXXXXXXXXXX',
+                'response' => (isset($HTTP_POST_VARS['g-recaptcha-response'])) ? un_htmlspecialchars(trim($HTTP_POST_VARS['g-recaptcha-response'])) : "",
+            );
+            $options = array(
+                'http' => array(
+                    'method'  => 'POST',
+                    'content' => http_build_query($data),
+                ),
+            );
+            $context         = stream_context_create($options);
+            $verify          = file_get_contents($url, false, $context);
+            $captcha_success = json_decode($verify);
+            if ($captcha_success->success == false) {
+                $smsg .= (($smsg != "") ? "<br />" : "") . $lang['captcha_required'];
+                $error = 1;
+            } elseif ($captcha_success->success == true) {
+                $smsg .= "";
+            }
+//HTML under <input ot <textarea
+        <div class="captcha_wrapper">
+    <div class="g-recaptcha" data-sitekey="XXXXXXXXXXX"></div>
+</div>
