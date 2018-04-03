@@ -1,0 +1,23 @@
+CREATE TABLE `counter_ips` (
+  `ip` varchar(15) NOT NULL,
+  `visit` datetime NOT NULL,
+  UNIQUE KEY `ip` (`ip`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `counter_values` (
+  `id` bigint(11) NOT NULL,
+  `day_id` bigint(11) NOT NULL,
+  `day_value` bigint(11) NOT NULL,
+  `yesterday_id` bigint(11) NOT NULL,
+  `yesterday_value` bigint(11) NOT NULL,
+  `week_id` bigint(11) NOT NULL,
+  `week_value` bigint(11) NOT NULL,
+  `month_id` bigint(11) NOT NULL,
+  `month_value` bigint(11) NOT NULL,
+  `year_id` bigint(11) NOT NULL,
+  `year_value` bigint(11) NOT NULL,
+  `all_value` bigint(11) NOT NULL,
+  `record_date` datetime NOT NULL,
+  `record_value` bigint(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
